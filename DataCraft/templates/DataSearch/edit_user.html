@@ -1,0 +1,175 @@
+{% load staticfiles %}
+{% load widget_tweaks %}
+{% load i18n %}
+{% if form.instance.id %}
+<form id="edit-private-contact-form" method="POST" action="" class="form-horizontal">
+{% else %}
+<form id="save-private-contact-form" method="POST" action="" class="form-horizontal">
+{% endif %}
+    {% csrf_token %}
+        <span id="care-level-error"></span>        
+        <div class="row">
+            <div class="form-group {% if form.title.errors %} has-error {% endif %}">
+                <div class="col-md-1 col-sm-1 col-xs-12"></div>
+                <div class="col-md-10 col-sm-10 col-xs-12">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1"><i class="fa fa-user"></i></span>    
+                        {% render_field form.title class="form-control" type="text" placeholder="Select title" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group {% if form.gender.errors %} has-error {% endif %}">
+                <div class="col-md-1 col-sm-1 col-xs-12"></div>
+                <div class="col-md-10 col-sm-10 col-xs-12">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1"><i class="fa fa-user"></i></span>
+                        {% render_field form.gender class="form-control" type="text" placeholder="Select Gender" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group {% if form.name_en.errors %} has-error {% endif %}">
+                <div class="col-md-1 col-sm-1 col-xs-12"></div>
+                <div class="col-md-10 col-sm-10 col-xs-12">
+                    <div class="input-group">
+                      <span class="input-group-addon" id="basic-addon1"><i class="fa fa-user"></i></span>
+                        {% render_field form.first_name class="form-control" type="text" placeholder="Enter First Name" %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group {% if form.middle_name.errors %} has-error {% endif %}">
+                <div class="col-md-1 col-sm-1 col-xs-12"></div>
+                <div class="col-md-10 col-sm-10 col-xs-12">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1"><i class="fa fa-user"></i></span>
+                        {% render_field form.middle_name class="form-control" type="text" placeholder="Enter Middle Name" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group {% if form.last_name.errors %} has-error {% endif %}">
+                <div class="col-md-1 col-sm-1 col-xs-12"></div>
+                <div class="col-md-10 col-sm-10 col-xs-12">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1"><i class="fa fa-user"></i></span>
+                        {% render_field form.last_name class="form-control" type="text" placeholder="Enter Last Name" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="form-group {% if form.address.errors %} has-error {% endif %}">
+                <div class="col-md-1 col-sm-1 col-xs-12"></div>
+                <div class="col-md-10 col-sm-10 col-xs-12">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1"><i class="fa fa-location-arrow"></i></span>
+                        {% render_field form.address class="form-control" type="text" placeholder="Enter Address" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group {% if form.street.errors %} has-error {% endif %}">
+                <div class="col-md-1 col-sm-1 col-xs-12"></div>
+                <div class="col-md-10 col-sm-10 col-xs-12">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1"><i class="fa fa-street-view"></i></span>
+                        {% render_field form.street class="form-control" type="text" placeholder="Enter Street Number" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group {% if form.postal_code.errors %} has-error {% endif %}">
+                <div class="col-md-1 col-sm-1 col-xs-12"></div>
+                <div class="col-md-10 col-sm-10 col-xs-12">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1"><i class="fa fa-map-marker"></i></span>
+                        {% render_field form.postal_code class="form-control" type="text" placeholder="Enter Postal Code" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group {% if form.city.errors %} has-error {% endif %}">
+                <div class="col-md-1 col-sm-1 col-xs-12"></div>
+                <div class="col-md-10 col-sm-10 col-xs-12">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1"><i class="fa fa-map-marker"></i></span>
+                        {% render_field form.city class="form-control" type="text" placeholder="City" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group {% if form.state.errors %} has-error {% endif %}">
+                <div class="col-md-1 col-sm-1 col-xs-12"></div>
+                <div class="col-md-10 col-sm-10 col-xs-12">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1"><i class="fa fa-map-marker"></i></span>
+                        {% render_field form.state class="form-control" type="text" placeholder="State" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group {% if form.country.errors %} has-error {% endif %}">
+                <div class="col-md-1 col-sm-1 col-xs-12"></div>
+                <div class="col-md-10 col-sm-10 col-xs-12">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1"><i class="fa fa-globe"></i></span>
+                        {% render_field form.country class="form-control" type="text" placeholder="Country" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group {% if form.phone_number.errors %} has-error {% endif %}">
+                <div class="col-md-1 col-sm-1 col-xs-12"></div>
+                <div class="col-md-10 col-sm-10 col-xs-12">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1"><i class="fa fa-mobile"></i></span>
+                        {% render_field form.phone_number class="form-control" type="text" placeholder="Enter Mobile Number" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+         <div class="row">
+            <div class="form-group {% if form.email.errors %} has-error {% endif %}">
+                <div class="col-md-1 col-sm-1 col-xs-12"></div>
+                <div class="col-md-10 col-sm-10 col-xs-12">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1"><i class="fa fa-envelope"></i></span>
+                        {% render_field form.email class="form-control" type="text" placeholder="Enter Email" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group {% if form.note.errors %} has-error {% endif %}">
+                <div class="col-md-1 col-sm-1 col-xs-12"></div>
+                <div class="col-md-10 col-sm-10 col-xs-12">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1"><i class="fa fa-envelope"></i></span>
+                        {% render_field form.note class="form-control" type="text" placeholder="Enter note" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+         
+        
+
+    <div class="modal-footer">
+        <button id="save-private-contact" type="submit" class="btn green">{% trans 'Save' %}</button>
+        <button type="button" class="btn btn-default care-close" data-dismiss="modal">Close</button>
+    </div>
+    <input type="hidden" value="{{form.instance.id}}" id="private-contact-id">
+</form>

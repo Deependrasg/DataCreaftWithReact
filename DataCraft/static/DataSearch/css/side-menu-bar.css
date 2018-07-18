@@ -1,0 +1,128 @@
+    .main_content {
+		margin-left: 40px;
+	}
+	.member-box:last-of-type {
+  		border: 0;
+	}
+	.side-bar li {
+		padding: 15px 0;
+	}
+	.side-bar li i {
+	   padding-right: 20px;
+	} 
+	.member-box p {
+  		font-size: 18px;
+  		padding: 15px 15px 0; 
+	}
+	.member-ul li a {
+	  font-size: 18px;
+	  font-weight: 300;
+	  color: #999;
+	}
+	.side-bar .panel-body ul li {
+	  border-bottom: 1px solid #aaa;
+	}
+	/*.side-bar .wrapper {
+	  width: 100%;
+	  max-width: 255px;
+	}*/
+	.side-bar .panel-heading {
+	  padding: 0;
+	}
+	.side-bar .panel-title>a, .side-bar .panel-title>a:active{
+	  display: block;
+	  padding: 15px;
+	  color: #aaa;
+	  font-size: 18px;
+	  font-weight: 400;
+	  letter-spacing: 1px;
+	  text-decoration: none;
+	}
+	.side-bar .panel-heading a:before {
+	  font-family: 'Glyphicons Halflings';
+	  content: "\e114";
+	  float: right;
+	  transition: all 0.5s;
+	}
+	.side-bar .panel-heading.active a:before {
+	  -webkit-transform: rotate(180deg);
+	  -moz-transform: rotate(180deg);
+	  -o-transform: rotate(180deg);
+	  -ms-transform: rotate(180deg);
+	  transform: rotate(180deg);
+	}
+	
+/*siede bar css*/
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 30px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 2px;
+  bottom: 5px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #77b4e5;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+.action-icon {
+	margin-bottom: 0;
+}
+.action-icon li {
+	list-style: none;
+	display: inline-block;
+}
+.action-icon a.btn {
+	background: #ededed;
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    padding: 6px;
+}
+.portlet-body table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before {
+	background-color: #77b4e5;
+	line-height: 16px;
+}

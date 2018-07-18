@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+{% load compress %}
+
+{% block head_title %}{% trans "Blue DataCraft" %}{% endblock %}
+
+{% block page_level_plugins %}
+    {% compress css %}
+
+    {%endcompress%} 
+    <link href="{% static 'DataSearch/css/side-menu-bar.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'DataSearch/css/style.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'DataSearch/css/style1.css' %}" rel="stylesheet" type="text/css" />  
+
+{% endblock %}
+{% block body_block %}
+<section>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-3 col-sm-3 col-xs-12 side-bar">
+				<div class="wrapper">
+				  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+				    <div class="panel panel-default">
+				      <div class="panel-heading active" role="tab" id="headingOne">
+				        <h4 class="panel-title">
+				          <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+				            Categories
+				          </a>
+				        </h4>
+				      </div>
+				      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+					    <div class="panel-body">
+					      <ul class="member-ul">
+					        <li class="active"><a href="#"><i class="fa fa-user"></i>Home</a></li>
+					        {% if request.user.is_superuser or request.user.client.user_role == 'Admin'%}
+					        	<li><a href="{% url 'userlist' %}"><i class="fa fa-user"></i>New Users</a></li>
+					        	<li><a href="{% url 'all_admin' %}"><i class="fa fa-file-text"></i>Admin</a></li>
+					        	<li><a href="{% url 'publisher' %}"><i class="fa fa-handshake-o"></i>Publisher</a></li>
+					        	<li><a href="{% url 'consumer' %}"><i class="fa fa-credit-card"></i>Consumer</a></li>
+					        {% endif %}
+					        <li><a href="#"><i class="fa fa-briefcase"></i>Agents</a></li>
+					        <li><a href="#"><i class="fa fa-credit-card"></i>Plans</a></li>
+					        <li><a href="#"><i class="fa fa-volume-control-phone"></i>Customer Service</a></li>
+					      </ul>
+					    </div>
+				      </div>
+				    </div>
+				  </div>  
+				</div>
+			</div>
+			<div class="col-md-9 col-sm-9 col-xs-12">
+				{% block setting %}
+	   			{%endblock%}		
+			</div>
+		</diV>
+	</div>
+</div>		
+    
+	<div class="main_content">
+	   
+	</div>
+{%endblock%}
+
+
+
+
+
+
+{% block js %}
+    {% compress js %}
+
+        
+    {% endcompress%}
+    <script type="text/javascript" src="{% static 'DataSearch/js/jquery.min.js' %}"></script>
+
+ <script type="text/javascript">
+	$(document).ready(function($){
+
+    	$('.panel-collapse').on('show.bs.collapse', function () {
+          $(this).siblings('.panel-heading').addClass('active');
+        });
+
+        $('.panel-collapse').on('hide.bs.collapse', function () {
+          $(this).siblings('.panel-heading').removeClass('active');
+        });
+	});
+</script>       
+
+{% endblock %}

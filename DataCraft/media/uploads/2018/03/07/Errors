@@ -1,0 +1,11 @@
+1 fatal error: Python.h: No such file or directory
+Solutions:-sudo apt-get install python3.6-dev
+
+
+consumer=hello21@mailinator.com 
+password=asdfasdf
+
+
+
+Publisher=publisher@mailinator.com
+asdfasdf

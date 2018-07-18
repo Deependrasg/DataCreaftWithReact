@@ -1,0 +1,208 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+{% load compress %}
+
+{% block head_title %}{% trans "Blue DataCraft" %}{% endblock %}
+
+{% block page_level_plugins %}
+    {% compress css %}
+
+    {%endcompress%}  
+     <link href="{% static 'DataSearch/css/responsive.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'DataSearch/css/style.css' %}" rel="stylesheet" type="text/css" />  
+{% endblock %}
+<style type="text/css">
+.navbar.navbar-hide {
+  display: none;
+}
+
+</style>
+{% block body_block %}
+
+    <main>
+      <section class="explore">
+        <!-- <div class="container-fluid">
+          <nav class="navbar">
+            <div class="row" id="navigation-inner">
+              <div class="col-md-4 col-sm-4 col-xs-12 padding_none"></div>
+              <div class="col-md-7 col-sm-7 col-xs-12 padding_none">
+                <div class="collapse navbar-collapse padding_none" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav explore-menubar">
+                    <li class="active"><a href="#explore" data-toggle="tab">Explore</a></li>
+                    <li><a href="#browser" data-toggle="tab">Browse</a></li>
+                    <li><a href="#data-status" data-toggle="tab">Data Status</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </nav>
+         
+        </div> -->
+         <div class="tab-content">
+            <div class="row tab-pane active" id="data-status"> 
+              <section class="slider">  
+                <div class="owl-carousel">
+                  <div class="item">
+                    <div class="carousel-caption">
+                      <h2>Find the data you need </h2>
+                      <p>Search hundreds of datasets from Blue Cross NC<br> or browse from the <a  href="{% url 'search_result' %}">data catalog</a></p>
+                      
+                      <form class="search-form" action="search-result/" method="post">
+                        {% csrf_token %}
+
+                        <input type="text" placeholder="Search for things like Member Profile, Provider Claim, Document Service etc." name='data' class="form-control" id='txtInput' value="">
+                        <button type="submit" class="btn search-btn submit"><i class="fa fa-search"></i></button>
+                      </form>
+
+                    </div>
+                    <img src="{% static 'DataSearch/images/slider-image.png' %}" alr="slider-image">
+                  </div>
+                  <div class="item item-catalog">
+                    <div class="carousel-caption">
+                      <div class="container">
+                        <h2 class="text-center">Find the data you need</h2>
+                        <p class="text-center"><span>Search hundreds of datasets from Blue Cross NC or browse from the <a href="{% url 'search_result' %}" >data catalog</a></span></p>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <form class="search-form" action="search-result/" method="post">
+                              {% csrf_token %}
+                              <input type="text" name='data' placeholder="Search for things like Member Profile, Provider Claim, Document Service etc." class="form-control">
+                              <button class="btn search-btn " type="submit"><i class="fa fa-search"></i></button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <img src="{% static 'DataSearch/images/slider-img.png' %}" alr="slider-img">
+                  </div>
+                </div>  
+              </section>
+              <br>
+              <section class="work">
+                <br>
+                <div class="container text-center">
+                  <h1>I Love Data</h1>
+                  <p>Blue DataCraft aims to allow anyone to easily share their datasets and in the process to dramatically increase the total amount of data available to the BCNC. As we grow, we will be able to provide larger and larger audiences to publishers, cover more and more departments, and promote data driven health care.</p>
+                </div>
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                      <div class="indonect">
+                        <i class="fa fa-users"></i>
+                        <a href="{% url 'search_result' %}" ><h1>Members </h1></a>
+                      </div>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac, sagittis odio id malesuada leo.</p>
+                      <a href="javascript:void(0);">read more...</a>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-12 horizontal-line">
+                      <div class="indonect">
+                        <i class="fa fa-user"></i>
+                        <a href="{% url 'search_result' %}" ><h1>Providers</h1></a>
+                      </div>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac, sagittis odio id malesuada leo.</p>
+                      <a href="javascript:void(0);">read more...</a>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-12 horizontal-line">
+                      <div class="indonect">
+                        <i class="fa fa-file-text-o"></i>
+                        <h1>Claims</h1>
+                      </div>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac, sagittis odio id malesuada leo.</p>
+                      <a href="javascript:void(0);">read more...</a>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-12 horizontal-line">
+                      <div class="indonect">
+                        <i class="fa fa-plus"></i>
+                        <h1>Care Management</h1>
+                      </div>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac, sagittis odio id malesuada leo.</p>
+                      <a href="javascript:void(0);">read more...</a>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                      <div class="indonect">
+                        <i class="fa fa-briefcase"></i>
+                        <h1>Employers</h1>
+                      </div>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac, sagittis odio id malesuada leo.</p>
+                      <a href="javascript:void(0);">read more...</a>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-12 horizontal-line">
+                      <div class="indonect">
+                        <i class="fa fa-briefcase"></i>
+                        <h1>Agents</h1>
+                      </div>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac, sagittis odio id malesuada leo.</p>
+                      <a href="javascript:void(0);">read more...</a>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-12 horizontal-line">
+                      <div class="indonect">
+                       <i class="fa fa-file-text-o"></i>
+                        <h1>Plans</h1>
+                      </div>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac, sagittis odio id malesuada leo.</p>
+                      <a href="javascript:void(0);">read more...</a>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-12 horizontal-line">
+                      <div class="indonect">
+                        <i class="fa fa-volume-control-phone"></i>
+                        <h1>Customer Service</h1>
+                      </div>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac, sagittis odio id malesuada leo.</p>
+                      <a href="javascript:void(0);">read more...</a>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>  
+          </div>
+      </section>
+     
+      <br>
+    </main>
+{%endblock%}
+{% block js %}
+    {% compress js %}
+
+        
+    {% endcompress%}
+ <script type="text/javascript" src="{% static 'DataSearch/js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'DataSearch/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'DataSearch/js/owl.carousel.min.js' %}"></script>
+        <script type="text/javascript">
+      $(document).ready(function($){
+        $('.slider .owl-carousel').owlCarousel({
+          loop:true,
+          autoplay:true,
+          margin:0,
+          nav:false,
+          items: 1
+        })     
+
+          $(".back-top").click(function(){
+            $('html, body').animate({scrollTop:0},500);  
+          });
+      });
+        
+
+        $(".navbar.navbar-hide").css('display','none');
+        $(".menubar a").click(function(e) {
+          e.preventDefault();
+           $('.navbar.navbar-hide').css('display','block');
+        });
+
+        $("input[type='text']").on("click", function(){             
+           $('.slider .owl-carousel').owlCarousel({
+              loop:false,
+              autoplay:false,
+              margin:0,
+              nav:false,
+              items: 1
+            })     
+        });
+
+    </script>
+
+{% endblock %}

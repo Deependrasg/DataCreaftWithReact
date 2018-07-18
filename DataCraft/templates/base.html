@@ -1,0 +1,306 @@
+{% load i18n %}
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load static %}
+{% load compress %}
+{% load widget_tweaks %}
+<html>
+  <head>
+    <title>{% block head_title %}{% endblock %}</title>
+    {% block extra_head %}
+    {% endblock %}
+      <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap -->
+  <!-- Fonts css -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet">
+  {% compress css %}
+  {% endcompress %}
+  <link href="{% static 'DataSearch/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css" >
+  <link href="{% static 'DataSearch/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" >
+  <link href="{% static 'DataSearch/css/owl.carousel.min.css' %}" rel="stylesheet" type="text/css" >
+  <link href="{% static 'DataSearch/css/responsive.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'DataSearch/css/style1.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'DataSearch/css/style.css' %}" rel="stylesheet" type="text/css" />
+
+  <style type="text/css">
+    ul li ul.dropdown{
+        min-width: 100%; /* Set width of the dropdown */
+        background: #f2f2f2;
+        display: none;
+        position: absolute;
+        z-index: 999;
+        left: 0;
+    }
+    ul li:hover ul.dropdown{
+        display: block; /* Display the dropdown */
+    }
+    ul li ul.dropdown li{
+        display: block;
+    }
+    .custom_side_nav {
+      display: block;
+      position: relative;
+      min-height: 600px;
+    }
+    .sign-out {
+      border: none;
+      background: transparent;
+      padding: 0;
+    }
+    .topnav .dropdown li a {
+      line-height: 30px;
+    }
+    .message_pop-up {
+      max-width: 500px;
+      width: 100%;
+      margin: 0 auto;
+      text-align: center;
+      background: rgba(6, 161, 251, 0.71);
+      color: #fff;
+      border-radius: 4px;
+      position: absolute;
+      top: 10px;
+      left: 0;
+      right: 0;
+      border: 2px solid rgba(6, 161, 251, 1);
+    }
+
+    nav.navbar .menubar > li {
+    padding: 0 23.5px;
+    }
+
+    nav.navbar .container-fluid > .row {
+        border-top: #ccc solid 2px;
+        border-bottom: #ccc solid 2px;
+        margin: 0;
+    }
+
+
+  </style>
+{% block page_level_plugins %}
+{% endblock %}
+
+  </head>
+  <body>
+
+        {% if messages %}
+          <div class="message_pop-up">
+             <strong>Messages:</strong>
+                <ul>
+	                 {% for message in messages %}
+	                       <li>{{message}}</li>
+	                 {% endfor %}
+                </ul>
+          </div>
+        {% endif %}
+
+   
+<!-- header start --> 
+    <header>
+      <div class="container-fluid topnav">
+        <div class="row">
+          <!-- <ul class="nav navbar-right top-nav">
+            <li class="dropdown open">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Admin User <b class="fa fa-angle-down"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#"><i class="fa fa-fw fa-user"></i> Edit Profile</a></li>
+                <li><a href="#"><i class="fa fa-fw fa-cog"></i> Change Password</a></li>
+                <li class="divider"></li>
+                <li><a href="#"><i class="fa fa-fw fa-power-off"></i> Logout</a></li>
+              </ul>
+            </li>
+          </ul> -->
+          <ul class="nav navbar-nav navbar-right top-menu">
+           {% if user.is_authenticated %}
+                  <!-- <li><a href="javascript:void(0);">CEO, Nitin</a></li> -->
+                  <!-- <li><a href="{#% url 'account_email' %}">Change E-mail</a></li> -->
+                  <li class="padding_none">
+                    <a href="javascript:void(0);">
+                      <img src="{% static 'DataSearch/images/profile.png' %}" alt="profile">
+                    </a>
+                    <ul class="dropdown dropdown-menu">
+                      <li><a href="{% url 'home' %}"><i class="fa fa-fw fa-user"></i> Setting</a></li>
+                      <li><a href="#"><i class="fa fa-fw fa-cog"></i> Change Password</a></li>
+                      <li>
+                        <a href="#"> 
+                          <form method="post" action="{% url 'account_logout' %}">
+                            {% csrf_token %}
+                            {% if redirect_field_value %}
+                            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                            {% endif %}
+                            <button type="submit" class="sign-out"><i class="fa fa-fw fa-power-off"></i> {% trans 'Sign Out' %}</button>
+                          </form>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>  
+
+
+          {% else %}
+            <li><a href="{% url 'account_login' %}">Sign In</a></li>
+            <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
+          {% endif %}
+            
+            <li><a href="javascript:void(0);">About</a></li>
+            <li><a href="javascript:void(0);">Help</a></li>
+          </ul>
+        </div>
+      </div>
+      <nav class="navbar ">
+        <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="javascript:void(0);">
+           <img src="{% static 'DataSearch/images/logo.png' %}" class="img-responsive">
+          </a>
+        </div> 
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right menubar">
+            <li class="active"><a href="#explore-inner" id='Explore' class='display-block'  data-toggle="tab">Explore</a></li>
+            <li><a href="#develop-inner" class='display-block' data-toggle="tab">Develop</a></li>
+            <li><a href="#publish-inner" class='display-block' data-toggle="tab">Publish</a></li>
+            <li><a href="#showcase-inner" class='display-block' data-toggle="tab">Showcase</a></li>
+            <li><a href="#resources-inner" class='display-block' data-toggle="tab">Resources</a></li>
+            <li><a href="#blogs-inner" class='display-block' data-toggle="tab">Blogs</a></li>
+            <!-- <li><a href="#news-inner" data-toggle="tab">News</a></li> -->
+          </ul>
+        </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+    </header>
+        
+        <nav class="navbar navbar-hide">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-4 col-sm-4 col-xs-12 padding_none"></div>
+              <div class="col-md-8 col-sm-8 col-xs-12 padding_none">
+                <div class="collapse navbar-collapse padding_none" id="bs-example-navbar-collapse-1">
+                  <div class="tab-content">
+                    <div class="tab-pane active" id="explore-inner">
+                      <ul class="nav navbar-nav explore-menubar">
+                        <li class="active"><a href="{% url 'index' %}">Explore</a></li>
+                        <li><a href="{% url 'search_result' %}" >Browse</a></li>
+                        <li><a href="" >Data Status</a></li>
+                        <!-- <li><a href="{#% url 'publihser_form' %}" >Publisher</a></li> -->
+                      </ul>
+                    </div>
+                    <div class="tab-pane" id="develop-inner">
+                      <ul class="nav navbar-nav explore-menubar">
+                        <li class="active"><a href="">Data Craft</a></li>
+                        <li><a href="" >Data Scientists Toolkit</a></li>
+                        <li><a href="" >AI and Machine Learning Toolkit</a></li>
+                      </ul>
+                    </div>
+                    <div class="tab-pane" id="publish-inner">
+                      <ul class="nav navbar-nav explore-menubar">
+  {% if request.user.is_superuser or request.user.client.user_role == 'Admin' or request.user.client.user_role == 'Publisher'%}
+                        <li class="active"><a href="{% url 'publisher_form' %}">Publishing Submission</a></li>
+  {% endif %}
+                        <li><a href="" >Submission Guidelines</a></li>
+                        <li><a href="" >Publishing Guidelines</a></li>
+                        <li><a href="" >Automation Services</a></li>
+                        <li><a href="" >Plans</a></li>
+                      </ul>
+                    </div>
+                    <div class="tab-pane" id="showcase-inner">
+                      <ul class="nav navbar-nav explore-menubar">
+                        <li class="active"><a href="">Featured</a></li>
+                        <li><a href="" >Enterprise Services</a></li>
+                        <li><a href="" >Data Science</a></li>
+                      </ul>
+                    </div>
+                    <div class="tab-pane" id="resources-inner">
+                      <ul class="nav navbar-nav explore-menubar">
+                        <li class="active"><a href="">zyx</a></li>
+                        <li><a href="" >zyx</a></li>
+                        <li><a href="" >zyx</a></li>
+                      </ul>
+                    </div>
+                    <div class="tab-pane" id="blogs-inner">
+                      <ul class="nav navbar-nav explore-menubar">
+                        <li class="active"><a href="">A</a></li>
+                        <li><a href="" >b</a></li>
+                        <li><a href="" >c</a></li>
+                      </ul>
+                    </div>
+                    <div class="tab-pane" id="news-inner">
+                      <ul class="nav navbar-nav explore-menubar">
+                        <li class="active"><a href="">A</a></li>
+                        <li><a href="" >b</a></li>
+                        <li><a href="" >c</a></li>
+                      </ul>
+                    </div>   
+                  </div>
+                </div><!-- /.navbar-collapse -->
+              </div>
+            </div>
+          </div>
+        </nav>
+    <!-- header end-->
+    
+    <!-- Body Block Start here  -->
+    <div class="custom_side_nav">
+      {% block body_block %}
+
+      {% endblock %}
+    </div>
+
+
+   <footer>
+      <div class="container text-center">
+        <div class="row">
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <a href="javascript:void(0);"><img src="{% static 'DataSearch/images/footerlogo.png' %}" alt="white-logo"></a>
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="box">
+              <i class="fa fa-envelope-o"></i>
+              <span>Subscribe to our Newsletter</span>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="back-top box">
+              <a href="javascript:void(0);"><i class="fa fa-angle-up"></i> Back to Top</a>
+            </div> 
+          </div>
+        </div>
+      </div>
+    </footer> 
+{% block js %}
+    <script type="text/javascript" src="{% static 'DataSearch/js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'DataSearch/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'DataSearch/js/owl.carousel.min.js' %}"></script>
+  
+
+
+    <script type="text/javascript">
+      $(document).ready(function($){
+        $('.slider .owl-carousel').owlCarousel({
+          loop:true,
+          autoplay:true,
+          margin:0,
+          nav:false,
+          items: 1
+        })       
+
+
+
+        $(".back-top").click(function(){
+          $('html, body').animate({scrollTop:0},500);  
+        });
+      
+
+      });
+      
+
+    </script>
+ {% endblock %}
+  </body>
+</html>

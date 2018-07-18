@@ -1,0 +1,114 @@
+{% load i18n %}
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load static %}
+{% load compress %}
+{% load widget_tweaks %}
+<html>
+<head>
+	<title>{% trans 'Sign Up' %}</title>
+    <head>
+    <!-- Meta tag Keywords -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Simple Signin Form Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements"
+    />
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <link rel="stylesheet" href="{% static 'DataSearch/css/login.css' %}"" type="text/css" media="all" />
+    <link rel="stylesheet" href="{% static 'DataSearch/css/font-awesome.css' %} ">
+    <link href="//fonts.googleapis.com/css?family=Play:400,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+
+</head>
+<body>
+</body>
+<div class="form-body">
+            {% if messages %}
+                <div class="messages">
+                {% for message in messages %}
+                    {% if message.tags == 'success' %} 
+                    {% else %}     
+                        <div class="alert alert-danger">
+                             <strong>Error! </strong>{{ message}}
+                        </div>  
+                    {% endif %}  
+                {% endfor %}
+                </div>
+            {% endif %}
+            <!-- BEGIN LOGIN FORM -->
+    <div class="main-content-agile">
+        <div class="sub-main-w3">
+            <form class="client-sign-up-form" id="client-sign-up-form" action="" method="POST">
+                {% csrf_token %}
+              
+                <h3 class="form-title font-green">Sign Up Form</h3>
+                <section class="sign-up-details">
+                    <div class="row">
+                        <label class="col-md-4">{% trans "First Name" %}</label>
+                        <div class="col-md-8">
+                            {% render_field form.first_name class="form-control" type="text" placeholder="" %}
+                        </div>
+                    
+                    </div>
+                    <div class="row"> 
+                        <label class="col-md-4">{% trans "Last Name" %}</label>
+                        <div class="col-md-8">
+                            {% render_field form.last_name class="form-control" type="text" placeholder="" %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-4">{% trans "Email" %}</label>
+                        
+                        <div class="col-md-8">
+                        {% render_field form.email class="form-control" type="text" placeholder="" %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-4">{% trans "Department" %}</label>
+                        
+                        <div class="col-md-8">
+                        {% render_field form.department class="form-control" type="text" placeholder="" %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-4">{% trans "User Role" %}</label>
+                        
+                        <div class="col-md-8">
+                        {% render_field form.user_role class="form-control" type="text" placeholder="" %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-4">{% trans "Password" %}</label>
+                       
+                        <div class="col-md-8">
+                            {% render_field form.password class="form-control" type="password" placeholder="" %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-4">{% trans "Re-Enter Password" %}</label>
+                        
+                        <div class="col-md-8">
+                        {% render_field form.reenter_password class="form-control" type="password" placeholder="" %}
+                        </div>
+                    </div>
+                    <div class="right-w3l">
+                        <button class="primaryAction" type="submit">Sign Up</button>
+                    </div>
+                </section>
+            </form>
+        </div>
+    </div>
+        </div>
+
+</html>

@@ -1,0 +1,272 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+{% load compress %}
+
+{% block head_title %}{% trans "Blue DataCraft" %}{% endblock %}
+
+{% block page_level_plugins %}
+    {% compress css %}
+
+    {%endcompress%}  
+      <link href="{% static 'DataSearch/css/responsive.css' %}" rel="stylesheet" type="text/css" />
+      <link href="{% static 'DataSearch/css/style.css' %}" rel="stylesheet" type="text/css" />
+      <link href="{% static 'DataSearch/css/style1.css' %}" rel="stylesheet" type="text/css" />  
+
+{% endblock %}
+
+{% block body_block %}
+<div class="container">
+    <div class="tab-content">                
+    <div class="row tab-pane active" id="browser">
+      <div class="col-md-8 col-sm-8 col-xs-12">
+        <h3 class="cyan heading">{{data.title}}<span>Members</span></h3>
+        <br>
+        <div class="row">
+          <div class="col-md-9 col-sm-9 col-xs-12">
+            <p>{{data.description}} ...</p>
+            <br>
+            <a href="javascript:void(0);" class="read-more">readmore..</a>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-12">
+            <div class="inner-box">
+              <h4>Updated</h4>
+              <h4 class="cyan">February 15,2018</h4>
+              <br>
+              <h4>Data Provided by</h4>
+              <h4 class="cyan">Blue Cross NC</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4 col-xs-12 view-data padding_none">
+
+      <div class="btn-group custom-btn-group" role="group" aria-label="...">
+          <button type="button" class="btn view-bnt"> View data</button>
+          <button type="button" class="btn btn-default">Visualize</button>
+          <button type="button" class="btn btn-default">Data Rail</button>
+          <button type="button" class="btn btn-default">API</button>
+
+        <!-- <button>Export</button> -->
+            {% if request.user.client.user_role == 'Consumer' and request.user.client.super_consumer == True %}
+              <!-- <div class="dropdown"> -->
+            <button class="dropdown-toggle btn btn-default" type="button" id="menu1" data-toggle="dropdown">Export <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+            </button>
+                 <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                  <div id="export-flannel" class="socrata-flannel btn-container export-flannel" role="dialog" aria-label="Download 311 Cases" style="right: 0px; bottom: 0px;">
+                      <header class="socrata-flannel-header">
+                      <span class="socrata-flannel-header-title">Download {{data.title}}</span>
+                      </header>
+                      <section class="socrata-flannel-content">
+                <ul class="featured-download-links">
+                  <li class="download-link">
+                    <a role="menuitem" href="" data-type="CSV">CSV</a>
+                  </li>
+                  <li class="download-link">
+                    <a role="menuitem" href="" data-type="CSV for Excel">CSV for Excel</a>
+                  </li>
+                </ul>
+                <div class="additional-links-title">Additional Formats</div>
+                      </section>
+                    </div>
+               </ul>
+              <!-- </div> -->
+            {% endif %}
+    
+            {% if request.user.client.user_role == 'Publisher' or request.user.client.user_role == 'Admin' or request.user.is_superuser%}
+              <!-- <div class="dropdown"> -->
+                <button class="dropdown-toggle btn btn-default" type="button" id="menu1" data-toggle="dropdown">
+                Export <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                <div id="export-flannel" class="socrata-flannel btn-container export-flannel" role="dialog" aria-label="Download 311 Cases" style="right: 0px; bottom: 0px;">
+              <header class="socrata-flannel-header">
+                <span class="socrata-flannel-header-title">Download {{data.title}}</span>
+              </header>
+              <section class="socrata-flannel-content">
+                <ul class="featured-download-links">
+                  <li class="download-link">
+                    <a role="menuitem" href="" data-type="CSV">CSV</a>
+                  </li>
+                  <li class="download-link">
+                    <a role="menuitem" href="" data-type="CSV for Excel">CSV for Excel</a>
+                  </li>
+                </ul>
+                <div class="additional-links-title">Additional Formats</div>
+              </section>
+                 </div>
+                </ul>
+              <!-- </div> -->
+            {% endif %}
+
+      </div>
+
+
+      </div>
+      <div class="clearfix"></div>
+      <div class="row margin-none">
+        <div class="col-md-12 about-data">
+          <br>
+          <h1 class="cyan heading">About this Dataset</h1>
+          <div class="row margin-none">
+            <div class="col-md-4 col-sm-5 col-xs-12 up-dated">
+              <br>  
+              <table class="table">
+                <h2 class="cyan">February 18, 2018</h2> 
+                <br>
+                <tbody>
+                  <tr>
+                    <td>Data Last Updated</td>
+                    <td>Metadata Last Updated</td>
+                  </tr>
+                  <tr>
+                    <td>February 18, 2018</td>
+                    <td>december 17, 2015</td>
+                  </tr>
+                  <tr>
+                    <td>Data created</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>December 17, 2015</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Views</td>
+                    <td>Downlode</td>
+                  </tr>
+                  <tr>
+                    <td class="cyan">12.2k</td>
+                    <td class="cyan">6,370</td>
+                  </tr>
+                  <tr>
+                    <td>Data Provided by</td>
+                    <td>Dataset Owner</td>
+                  </tr>
+                  <tr>
+                    <td>{{data.publisher.first_name}}</td>
+                    
+                    <td>BlueData</td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">
+                      <a href="javascript:void(0);" class="btn contact-btn">Contact Dataset Owner</a>
+                    </td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+              <!-- <h2 class="cyan">February 18, 2018</h2> -->  
+              <br>
+              <div class="clearfix">
+                <div class="row">
+                  <div class="clearfix"></div>
+                  <br>
+                <div class="row">
+                  <!-- div class="col-md-8 col-sm-12 col-xs-12">
+                    <a href="javascript:void(0);" class="btn contact-btn">Contact Dataset Owner</a>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-5 col-sm-7 col-xs-12">
+            <div class="row department">
+              <h2>Department Metrics</h2>
+              <div class="col-md-5 col-sm-7 col-xs-12 padding_none">
+                <!-- <p>Publishing department</p> -->
+                <p>{{data.department.name}}</p>
+
+              </div>
+              <div class="col-md-5 col-sm-5 col-xs-12 padding_none">
+                <p>Information Delivery</p>
+              </div>
+            </div>
+            <div class="row department">
+              <h2>Detailed Descriptive</h2>
+              <div class="col-md-5 col-sm-7 col-xs-12 padding_none">
+                <p>Geogrphics Unit</p>
+              </div>
+              <div class="col-md-5 col-sm-5 col-xs-12 padding_none">
+                <p>Street Address</p>
+              </div>
+            </div>
+            <div class="row department">
+              <h2>Publishing Details</h2>
+              <div class="col-md-5 col-sm-7 col-xs-12 padding_none">
+                <p>Data change frequency</p>
+                <p>Publishing frequency</p>
+              </div>
+              <div class="col-md-5 col-sm-5 col-xs-12 padding_none">
+                <p>Daily</p>
+                <p>Daily</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 padding_none">
+                <div class="showmore">
+                  <h2>Attachements</h2>
+                  <span class="cyan">{{data.upload}}</span>
+                  <a href="javascript:void(0);" class="cyan">Show More</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>  
+        <div class="row">
+          <div class="col-md-9 dataset">
+            <h1 class="cyan heading">What is Dataset?</h1>
+            <br>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Row</th>
+                  <th>Columns</th>
+                  <th>Each row is</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="cyan">
+                  <td>4.58M</td>
+                  <td>34</td>
+                  <td>Response</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+    </div>
+</div>
+{%endblock%}
+{% block js %}
+    {% compress js %}
+
+        
+    {% endcompress%}
+ <script type="text/javascript" src="{% static 'DataSearch/js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'DataSearch/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'DataSearch/js/owl.carousel.min.js' %}"></script>
+        <script type="text/javascript">
+      $(document).ready(function($){
+        $('.slider .owl-carousel').owlCarousel({
+          loop:true,
+          autoplay:true,
+          margin:0,
+          nav:false,
+          items: 1
+        })       
+
+        $(".back-top").click(function(){
+          $('html, body').animate({scrollTop:0},500);  
+        });
+
+      });
+      
+    </script>
+
+{% endblock %}

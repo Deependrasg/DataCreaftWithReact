@@ -1,0 +1,170 @@
+@media screen and (max-width: 1807px){ 
+  .topnav {
+    margin: 0 24px;
+  }
+  .menubar>li {  
+    padding: 0;
+  }
+  .menubar>li a {
+    font-size: 16px; 
+  }
+  .menubar {
+    padding: 18px 0;
+  }
+  .slider .carousel-caption {
+    top: 30px;
+  }
+  .slider .carousel-caption p {
+    font-size: 24px;
+  }
+  .slider .carousel-caption h2 {
+    font-size: 40px;
+  }
+}
+@media screen and (max-width: 992px){
+  .topnav {
+    margin: 0;
+  }
+  header a.navbar-brand {
+    max-width: 278px;
+  }
+  .menubar {
+    padding: 30px 0;
+    margin-right: 0;
+  }
+  .menubar>li {
+    padding: 0;
+  }
+  .menubar>li a {
+    font-size: 12px;
+    padding: 0 6px;
+  }
+  .slider .carousel-caption {
+    top: 12px;
+  }
+  .slider .carousel-caption span {
+    font-size: 22px;
+  } 
+   .slider .carousel-caption p  {
+    font-size: 16px;
+  }
+   .work h1, .slider .carousel-caption h2 {
+    font-size: 28px;
+  } 
+   .work h1 + p, .work p {
+    font-size: 18px;
+  }
+  .work .row {
+    padding: 20px 0;
+  }
+  .work h1 + p {
+    padding: 10px 0;
+  }
+  .box {
+    font-size: 18px;
+    padding: 20px 0;
+  }
+  .box .fa {
+    font-size: 34px;
+  }
+  footer img {
+    padding: 33px 0;
+  }
+  .wrapper{
+    width:100%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .topnav li a {
+    padding: 0;
+    text-align: center;
+  }
+  header a.navbar-brand {
+    max-width: 240px;
+  }
+  header .navbar-toggle {
+    border:1px solid #00a3d3;
+    margin: 14px 10px;
+  }
+  .navbar-toggle .icon-bar {
+    background-color: #00a3d3; 
+  }
+  .navbar-collapse {
+    position: absolute;
+    background: #333;
+    width: 100%;
+    margin-top: 0;
+    text-align: center;
+    z-index: 9;
+  } 
+  .menubar>li {
+    border-right: none;
+  }
+  .menubar>li a {
+    padding: 15px 0;
+    font-size: 14px;
+  }
+  .slider .carousel-caption {
+    top: 0;
+    text-align: center;
+    left: 10px;
+    right: 10px;
+  }
+  .search-form {
+    margin: 0 auto;
+  } 
+  .carousel-caption p {
+    font-size: 12px;
+  }
+  .slider .carousel-caption span {
+    font-size: 18px;
+  }
+  .slider .carousel-caption h2  {
+    font-size: 22px;
+  }
+  .owl-carousel .owl-item img {
+    min-height: 200px;
+  }
+  .indonect  {
+    padding-top: 25px;
+  }
+  .work .row {
+    padding: 20px 0;
+    text-align: center;
+  }
+  .work h1 {
+    font-size: 24px;
+  }
+  .work h1 + p, .work p {
+    font-size: 16px;
+  }
+  .indonect + p {
+    max-width: 100%;
+  }
+  .indonect .fa {
+    font-size: 35px; 
+  }
+  .horizontal-line::after {
+    border: none;
+  }
+  footer {
+    padding: 10px 0; 
+  } 
+  .box {
+    padding: 30px 0;
+    border-left: none;
+    border-top: 1px solid #fff;
+    font-size: 16px;
+  } 
+  .box .fa {
+    font-size: 24px;
+    vertical-align: inherit;
+  }
+  footer img {
+    max-width: 240px;
+  }
+}
+
+
+

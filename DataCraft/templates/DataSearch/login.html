@@ -1,0 +1,80 @@
+{% load i18n %}
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load static %}
+{% load compress %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html>
+
+<head>
+	<!-- Meta tag Keywords -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Simple Signin Form Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements"
+	/>
+	<script>
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+	<!-- Meta tag Keywords -->
+	<!-- css files -->
+	<link rel="stylesheet" href="{% static 'DataSearch/css/login.css' %}"" type="text/css" media="all" />
+
+	<!-- Style-CSS -->
+	<link rel="stylesheet" href="{% static 'DataSearch/css/font-awesome.css' %} ">
+	<!-- Font-Awesome-Icons-CSS -->
+	<!-- //css files -->
+	<!-- web-fonts -->
+	<link href="//fonts.googleapis.com/css?family=Play:400,700" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+	<!-- //web-fonts -->
+	<style type="text/css">
+		message_pop-up {
+		      max-width: 500px;
+		      width: 100%;
+		      margin: 0 auto;
+		      text-align: center;
+		      background: rgba(6, 161, 251, 0.71);
+		      color: #fff;
+		      border-radius: 4px;
+		      position: absolute;
+		      top: 10px;
+		      left: 0;
+		      right: 0;
+		      border: 2px solid rgba(6, 161, 251, 1);
+		    }
+	</style>
+</head>
+<body>
+	<div class="header-w3l">
+		<h1>
+			Bl<span>ue</span>Cross Bl<span>ue</span> Shi<span>e</span>ld
+		</h1>
+	</div>
+	{% if messages %}
+          <div class="message_pop-up">
+             <strong>Messages:</strong>
+                <ul>
+	                 {% for message in messages %}
+	                       <li>{{message}}</li>
+	                 {% endfor %}
+                </ul>
+          </div>
+    {% endif %}
+
+	<div class="main-content-agile">
+		<div class="sub-main-w3">
+			<h2>Sign In Now</h2>
+			{% block content %}
+    		{% endblock %}
+
+		</div>
+	</div>
+</body>
+</html>

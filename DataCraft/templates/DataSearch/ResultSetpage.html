@@ -1,0 +1,184 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+{% load compress %}
+
+{% block head_title %}{% trans "Blue DataCraft" %}{% endblock %}
+
+{% block page_level_plugins %}
+    {% compress css %}
+
+    {%endcompress%}  
+    <link href="{% static 'DataSearch/css/responsive.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'DataSearch/css/style.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'DataSearch/css/style1.css' %}" rel="stylesheet" type="text/css" />  
+
+{% endblock %}
+
+{% block body_block %}
+<div class="container-fluid">
+    <div class="row tab-pane" id="explore">
+                  <div class="col-md-3 col-sm-3 col-xs-12 side-bar">
+                    <div class="wrapper center-block">
+                      <div class="panel-group custom-side-bar" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                          <div class="panel-heading active" role="tab" id="headingOne">
+                            <h4 class="panel-title">
+                              <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Categories
+                              </a>
+                            </h4>
+                          </div>
+                          <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body">
+                          <ul class="member-ul">
+                            <li class="active"><a href="#"><i class="fa fa-users"></i>Member</a></li>
+                            <li><a href="#"><i class="fa fa-user"></i>Providers</a></li>
+                            <li><a href="#"><i class="fa fa-file-text-o"></i>Claims</a></li>
+                            <li><a href="#"><i class="fa fa-plus"></i>Care Management</a></li>
+                            <li><a href="#"><i class="fa fa-credit-card"></i>Employers</a></li>
+                            <li><a href="#"><i class="fa fa-briefcase"></i>Agents</a></li>
+                            <li><a href="#"><i class="fa fa-newspaper-o"></i>Plans</a></li>
+                            <li><a href="#"><i class="fa fa-volume-control-phone"></i>Customer Service</a></li>
+                          </ul>
+                        </div>
+                        </div>
+                        <div class="panel panel-default">
+                          <div class="panel-heading" role="tab" id="headingTwo">
+                            <h4 class="panel-title">
+                              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                View Types
+                              </a>
+                            </h4>
+                          </div>
+                          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                            <div class="panel-body">
+                              <ul class="member-ul">
+                                <li><a href="#">Carts</a></li>
+                                <li><a href="#">Datasets</a></li>
+                                <li><a href="#">Files</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="panel-default">
+                          <div class="panel-heading" role="tab" id="headingThree">
+                            <h4 class="panel-title">
+                              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Publishing Department
+                              </a>
+                            </h4>
+                          </div>
+                          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                            <div class="panel-body">
+                              <ul class="member-ul">
+                                <li><a href="#">CGSO</a></li>
+                                <li><a href="#">Enterprise Analytics</a></li>
+                                <li><a href="#">Informations Delivery</a></li>
+                                <li><a href="#">Enterprise Services</a></li>
+
+                              </ul> 
+                            </div>
+                          </div>
+                        </div>
+                        </div>
+                      </div>  
+                    </div>
+                  </div>
+                  <div class="col-md-9 col-sm-9 col-xs-12 custm_memberprof_srch">
+                    <div class="search-form">
+                      <input type="search" id='search' placeholder="Search for things like Member Profile, Provider Claim, Document Service etc." class="form-control">
+                      <button class="btn search-btn"><i class="fa fa-search"></i></button>
+                    </div>
+                    <div class="row result">
+                      <div class="col-md-8 col-sm-8 col-xs-12">
+                        <h3>Results </h3>
+                        <a href="javascript:void(0);" class="btn categories-btn">Categories Members</a>
+                        <a href="javascript:void(0);" class="btn clear-btn">Clear All</a>
+                      </div>
+                      <div class="col-md-4 col-sm-4 col-xs-12 text-right">
+                        <div class="dropdown">
+                          <button class="btn btn-default dropdown-toggle newest-btn" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <h3>Sort by</h3>
+                          </button>
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><a href="#"><i class=""></i> Alphabetical</a></li>
+                            <li><a href="#"><i class=""></i> Most Accessed</a></li>
+                            <li><a href="#"><i class="fa fa-check"></i> Most Relevant</a></li>
+                            <li><a href="#"><i class=""></i> Recently Added</a></li>
+                            <li><a href="#"><i class=""></i> Recently Updated</a></li>
+
+                          </ul>
+                        </div>
+
+                      </div>
+                    </div> 
+                   <div class='result-data'>
+                    {% for d in data %}
+                        <div class="row member-box">
+                          <div class="col-md-9 col-sm-8 col-xs-12">
+                            {% if d.meta.id %}
+                              <a href="{% url 'service_data' d.meta.id %}">
+                            {% endif %}
+                            {%if d.id %}
+                              <a href="{% url 'service_data' d.id %}">
+                            {% endif %}
+                                <h1 class="cyan heading">{{d.title}}</h1>
+                            </a>
+                            <h3>{{d.description}}</h3>
+                            <p>Tags<span class="cyan"> business</span></p>
+                          </div>
+                          <div class="col-md-3 col-sm-4 col-xs-12">
+                            <div class="inner-box">
+                              <span class="cyan">Dataset</span>
+                              <br>
+                              <h4>Updated</h4>
+                              <h4 class="cyan">February 15,2018</h4>
+                              <br>
+                              <h4>views</h4>
+                              <h4 class="cyan">84,403</h4>
+                            </div>
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>
+                    {% endfor %}  
+                    </div> 
+                          <div class="pagination-data">
+                            {% if data.has_other_pages %}
+                              <ul class="pagination">
+                                {% if data.has_previous %}
+                                  <li><a href="?page={{ users.previous_page_number }}">&laquo;</a></li>
+                                {% else %}
+                                  <li class="disabled"><span>&laquo;</span></li>
+                                {% endif %}
+                                {% for i in data.paginator.page_range %}
+                                  {% if data.number == i %}
+                                    <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                                  {% else %}
+                                    <li><a href="?page={{ i }}">{{ i }}</a></li>
+                                  {% endif %}
+                                {% endfor %}
+                                {% if data.has_next %}
+                                  <li><a href="?page={{ users.next_page_number }}">&raquo;</a></li>
+                                {% else %}
+                                  <li class="disabled"><span>&raquo;</span></li>
+                                {% endif %}
+                              </ul>
+                            {% endif %}
+                          </div>
+                  </div>
+                <div class="col-md-1"></div>
+        </div>
+</div>
+{%endblock%}
+{% block js %}
+    {% compress js %}
+
+        
+    {% endcompress%}
+  <script type="text/javascript" src="{% static 'DataSearch/js/jquery.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'DataSearch/js/bootstrap.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'DataSearch/js/owl.carousel.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'DataSearch/js/resultset.js' %}"></script>
+
+{% endblock %}

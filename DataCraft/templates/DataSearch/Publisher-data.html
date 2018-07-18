@@ -1,0 +1,231 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+{% load compress %}
+{% load widget_tweaks %}
+
+{% block head_title %}{% trans "Blue DataCraft" %}{% endblock %}
+
+{% block page_level_plugins %}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+
+
+
+    {% compress css %}
+
+    {%endcompress%}  
+    <link href="{% static 'DataSearch/css/responsive.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'DataSearch/css/style.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'DataSearch/css/style1.css' %}" rel="stylesheet" type="text/css" /> 
+    <link href="{% static 'DataSearch/css/publishers.css' %}" rel="stylesheet" type="text/css" /> 
+{% endblock %}
+
+{% block body_block %}
+<div class="container">
+        <div class="row tab-pane" id="publish">
+          <div class="col-md-7 col-sm-7 col-xs-12">
+            <h1 class="cyan heading">Publishing</h1>
+            <p><b>BCNC data publishers, begin your journey here.</b></p>
+            <p class="sub-head">So you want to publish data on the BCNC DataCraft? Get started by following the instructions below and submitting the form.Please contact us if you have any questions.</p>
+            <br>
+            <ul id="publishingList" class="custom-counter list-unstyled list-publishing">
+              <li>
+              <div class="well">
+              <div class="list-todo">
+                <i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i>
+                <span>Review the submission guidelines</span>
+              </div>
+              </div>
+              </li>
+              <li>
+              <div class="well">
+              <div class="list-todo">
+                <i class="fa fa-files-o fa-2x" aria-hidden="true"></i>
+                <span>Review the form below and gather necessary information</span>
+              </div>
+              </div>
+              </li>
+              <li>
+              <div class="well">
+              <div class="list-todo"><i class="fa fa-paper-plane-o fa-2x" aria-hidden="true"></i>
+               <span>Fill out the form and click submit</div></span>
+              </div>
+              </li>
+            </ul>
+            <form class="publisher-form" id="client-sign-up-form" action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+            <!-- <form class="publish-form"> -->
+              <div class="form-group">
+                <div class="row">
+                  <label>Department<span>*</span></label>
+                  {% render_field form.department class="form-control" type="select" required=true placeholder=""  %} 
+                </div>
+              </div>
+        <!-- start form  -->
+
+              <h1 class="cyan heading">Dataset information</h1>
+              <p>When you select a dataset to publish, we prefill some fields based on what your department has already told us. Please review and update those fields as needed.</p>
+              <p class="info-p">If you don’t see your dataset, select"***Dataset not in inventory."</p>
+              <br>
+              <div class="form-group">
+                <label>Select dataset to be published<span>*</span></label>
+                {% render_field form.subdepartment class="form-control" type="text" placeholder="" required=true  %}
+                If the dataset you want to publish is not in the inventory, just select the option "Dataset not in inventory" and we'll makesure it gets added.
+              </div>
+              <div class="form-group">
+                <label>System generated inventory ID</label>
+                {% render_field form.inventory_ID class="form-control" type="text" placeholder="" readonly="True" %} 
+                Automatically populated from the dataset inventory if available. This field is system generated and not editable.
+              </div>
+
+
+              <div class="form-group">
+                <label>{% trans "Title<span>*</span>" %}</label>
+                {% render_field form.title class="form-control" type="text" data-validation="alphanumeric" placeholder="" %}
+
+                Human-readable name of the dataset. Should be in plain English and include sufficient detail to facilitate search and discovery. Avoid acronyms.
+              </div> 
+              <div class="form-group">
+                <label>Description<span>*</span></label>
+                    {% render_field form.description class="form-control" type="textarea" data-validation="alphanumeric" rows="5" placeholder="" %}
+                    
+                    Provide a longer description of the data that can be readily understood by non-technical users. Include context like relevant statutes or programs that can help the data user understand how and why the data is collected.
+              </div>
+              <div class="form-group">
+                <label>Data classification<span>*</span></label>
+                {% render_field form.data_classification class="form-control" type="text" required=true  placeholder="" %}
+                
+                Please indicate the data classification of the raw data prior to any de-identification (Public,Sensitive or Protected).
+              </div> 
+              <div class="form-group">
+                <label>Category<span>*</span></label>
+                {% render_field form.category class="form-control" type="text" placeholder="" required=true  %}
+                    
+                The category of the data set identified by the list of possible values. If a data set can fall into multiple categories, select the one which is most significant.
+              </div>
+              <div class="form-group">
+                <label>Data change frequency<span>*</span></label>
+                {% render_field form.data_change_frequency class="form-control" type="text" required=true  placeholder="" %}
+                    
+                How often does the data change or get updated at the source?
+              </div>
+
+              <div class="form-group">
+                <label>API Endpoint<span>*</span></label>
+                {% render_field form.api_endpoint class="form-control" data-validation="alphanumeric" type="text" placeholder="" %}
+                    
+               <!--  The category of the data set identified by the list of possible values. If a data set can fall into multiple categories, select the one which is most significant. -->
+              </div>
+
+              <div class="row">
+                <h1 class="cyan heading">System information</h1>
+                <p>Please answer the following quick questions on the data system in which this data is stored and accessed.</p>
+              </div>
+              <div class="form-group">
+                <label>Is data currently being extracted from the data system and put somewhere else in an automated fashion?<span>*</span></label>
+                {% render_field form.automated_fashion class=""  type="text" placeholder="" %}
+              </div>
+
+
+
+              <div class="">
+                <div class="row">
+                  <label>Data Comes from <span>*</span></label>
+                  {% render_field form.dataset_come_from class="" type="text" placeholder="" %}
+                  <span class="automation-text"><small>Automation options</small></span>
+                </div>
+              </div>
+              <div class="form-group custom-checkbox">
+                <div class="row">
+                  <ul class="automation_option_ul">
+                    <li>{% render_field form.automation_option class="" type="text" placeholder="" %}</li>
+                    <li>I may need to apply transformations like turning strings into standard dates and times, cleaning up address fields, or applying field lookups to other reference data. See more examples in the data services overview linked above<span>*</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Attached file <span></span></label>
+                {% render_field form.upload class="form-control upload-file" type="text" placeholder="" %}
+                We'll accept .doc, .docx, .pdf, .rtf and .txt
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <button class="btn submit-btn" type="submit">Submit</button>
+                </div>
+              </div>
+          </form>
+          </div>
+          <div class="col-md-5 col-sm-5 col-xs-12 publish-table table-responsive">
+            <table class="table">
+              <tr>
+                <td>claims</td>
+                <td>367542894</td>
+                <td>Durham</td>
+                <td>NC</td>
+                <td>27707</td>
+                <td>01/01/2018</td>
+              </tr>
+              <tr>
+                <td>claims</td>
+                <td>367542894</td>
+                <td>Durham</td>
+                <td>NC</td>
+                <td>27707</td>
+                <td>01/01/2018</td>
+              </tr>
+              <tr>
+                <td>claims</td>
+                <td>367542894</td>
+                <td>Durham</td>
+                <td>NC</td>
+                <td>27707</td>
+                <td>01/01/2018</td>
+              </tr>
+              <tr>
+                <td>claims</td>
+                <td>367542894</td>
+                <td>Durham</td>
+                <td>NC</td>
+                <td>27707</td>
+                <td>01/01/2018</td>
+              </tr>
+              <tr>
+                <td>claims</td>
+                <td>367542894</td>
+                <td>Durham</td>
+                <td>NC</td>
+                <td>27707</td>
+                <td>01/01/2018</td>
+              </tr>
+              <tr>
+                <td>claims</td>
+                <td>367542894</td>
+                <td>Durham</td>
+                <td>NC</td>
+                <td>27707</td>
+                <td>01/01/2018</td>
+              </tr>
+              <tr>
+                <td>claims</td>
+                <td>367542894</td>
+                <td>Durham</td>
+                <td>NC</td>
+                <td>27707</td>
+                <td>01/01/2018</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+</div>
+{% endblock %}
+{% block js %}
+    {% compress js %}        
+    <script type="text/javascript" src="{% static 'DataSearch/js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'DataSearch/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'DataSearch/js/owl.carousel.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'DataSearch/js/publishers.js' %}"></script>
+    {% endcompress%}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+{% endblock %}
